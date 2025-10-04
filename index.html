@@ -6,59 +6,58 @@
   <title>Conselho de Classe — Detecção Automática</title>
   <style>
     :root {
-      --primary-blue: #4A90E2;
-      --primary-orange: #F5A623;
-      --primary-green: #7ED321;
-      --gradient-bg: linear-gradient(135deg, #4A90E2 0%, #F5A623 50%, #7ED321 100%);
-      --gradient-card: linear-gradient(135deg, #f8fdff 0%, #ffffff 100%);
-      --gradient-button: linear-gradient(135deg, var(--primary-blue) 0%, var(--primary-green) 100%);
-      --gradient-table: linear-gradient(135deg, #e8f4ff 0%, #f0fff0 100%);
-      --text-primary: #2c3e50;
-      --text-secondary: #546e7a;
-      --border-color: #e0e0e0;
-      --shadow-light: 0 4px 12px rgba(0, 0, 0, 0.08);
-      --shadow-medium: 0 8px 24px rgba(0, 0, 0, 0.12);
-    }
-
-    * {
-      box-sizing: border-box;
+      --bg-primary: linear-gradient(135deg, #0f62fe 0%, #ff8c00 50%, #50e3c2 100%);
+      --bg-secondary: linear-gradient(135deg, #e3f2fd 0%, #fff3e0 50%, #e8f5e9 100%);
+      --bg-card: #ffffff;
+      --accent-blue: #0f62fe;
+      --accent-orange: #ff8c00;
+      --accent-green: #50e3c2;
+      --text-primary: #0b1220;
+      --text-secondary: #6b7280;
+      --border-color: #e6e9ef;
+      --shadow: 0 10px 30px rgba(2, 6, 23, 0.1);
+      --shadow-hover: 0 15px 40px rgba(2, 6, 23, 0.15);
     }
 
     body {
-      font-family: 'Segoe UI', system-ui, -apple-system, BlinkMacSystemFont, 'Roboto', sans-serif;
+      font-family: 'Inter', system-ui, 'Segoe UI', Roboto, Arial, sans-serif;
       margin: 0;
-      padding: 0;
-      background: var(--gradient-bg);
-      background-attachment: fixed;
+      min-height: 100vh;
+      background: var(--bg-primary);
       color: var(--text-primary);
-      line-height: 1.6;
-    }
-
-    .wrap {
-      max-width: 1100px;
-      margin: 30px auto;
+      display: flex;
+      align-items: center;
+      justify-content: center;
       padding: 20px;
     }
 
+    .wrap {
+      width: 100%;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
     .card {
-      background: var(--gradient-card);
-      border-radius: 16px;
+      background: var(--bg-card);
+      border-radius: 20px;
       padding: 30px;
-      box-shadow: var(--shadow-medium);
-      backdrop-filter: blur(10px);
-      border: 1px solid rgba(255, 255, 255, 0.2);
+      box-shadow: var(--shadow);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-5px);
+      box-shadow: var(--shadow-hover);
     }
 
     h1 {
       margin: 0 0 20px;
       font-size: 24px;
-      font-weight: 600;
-      background: var(--gradient-button);
+      font-weight: 700;
+      background: linear-gradient(135deg, var(--accent-blue), var(--accent-orange));
       -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
       background-clip: text;
-      color: transparent;
-      padding-bottom: 10px;
-      border-bottom: 2px solid rgba(74, 144, 226, 0.1);
     }
 
     .row {
@@ -77,126 +76,126 @@
     }
 
     select, input, textarea, button {
-      padding: 12px 14px;
-      border-radius: 10px;
+      padding: 12px 16px;
+      border-radius: 12px;
       border: 2px solid var(--border-color);
       background: white;
       font-size: 14px;
       transition: all 0.3s ease;
       width: 100%;
+      box-sizing: border-box;
     }
 
     select:focus, input:focus, textarea:focus {
       outline: none;
-      border-color: var(--primary-blue);
-      box-shadow: 0 0 0 3px rgba(74, 144, 226, 0.2);
+      border-color: var(--accent-blue);
+      box-shadow: 0 0 0 3px rgba(15, 98, 254, 0.1);
     }
 
     textarea {
-      min-width: 380px;
       min-height: 100px;
       resize: vertical;
     }
 
     button {
-      background: var(--gradient-button);
+      background: linear-gradient(135deg, var(--accent-blue), var(--accent-orange));
       color: white;
       border: none;
-      font-weight: 600;
       cursor: pointer;
+      font-weight: 600;
       padding: 12px 20px;
       transition: all 0.3s ease;
-      box-shadow: var(--shadow-light);
+      width: auto;
     }
 
     button:hover {
       transform: translateY(-2px);
-      box-shadow: var(--shadow-medium);
+      box-shadow: 0 5px 15px rgba(15, 98, 254, 0.3);
     }
 
     button:active {
       transform: translateY(0);
     }
 
+    #loadBtn {
+      background: linear-gradient(135deg, var(--accent-blue), #3a7cff);
+    }
+
+    #scanBtn {
+      background: linear-gradient(135deg, var(--accent-orange), #ff9c33);
+    }
+
+    #showBtn {
+      background: linear-gradient(135deg, var(--accent-green), #6ce9cb);
+    }
+
     table {
       width: 100%;
       border-collapse: collapse;
       margin-top: 20px;
-      border-radius: 10px;
+      border-radius: 12px;
       overflow: hidden;
-      box-shadow: var(--shadow-light);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
     }
 
     th, td {
-      padding: 14px 16px;
+      padding: 12px 16px;
       border: 1px solid var(--border-color);
       text-align: left;
     }
 
     thead th {
-      background: var(--gradient-table);
-      color: var(--text-primary);
+      background: linear-gradient(135deg, var(--accent-blue), var(--accent-green));
+      color: white;
       font-weight: 600;
-      font-size: 14px;
     }
 
     tbody tr:nth-child(even) {
-      background-color: rgba(126, 211, 33, 0.05);
+      background-color: rgba(80, 227, 194, 0.1);
     }
 
     tbody tr:nth-child(odd) {
-      background-color: rgba(74, 144, 226, 0.05);
+      background-color: rgba(15, 98, 254, 0.05);
     }
 
     tbody tr:hover {
-      background-color: rgba(245, 166, 35, 0.1);
+      background-color: rgba(255, 140, 0, 0.1);
     }
 
     .small {
       font-size: 14px;
       color: var(--text-secondary);
-      margin-top: 10px;
     }
 
     .note {
       font-size: 14px;
-      color: var(--text-secondary);
+      color: #334155;
     }
 
     .error {
-      color: #e74c3c;
-      background-color: rgba(231, 76, 60, 0.1);
-      padding: 12px;
-      border-radius: 8px;
-      margin-top: 10px;
-      border-left: 4px solid #e74c3c;
+      color: #b91c1c;
+      background-color: rgba(185, 28, 28, 0.1);
+      padding: 12px 16px;
+      border-radius: 12px;
+      margin-top: 16px;
+      border-left: 4px solid #b91c1c;
     }
 
-    .success {
-      color: #27ae60;
-      background-color: rgba(39, 174, 96, 0.1);
-      padding: 12px;
-      border-radius: 8px;
-      margin-top: 10px;
-      border-left: 4px solid #27ae60;
-    }
-
-    /* Estilização do dropdown */
+    /* Estilo para dropdowns */
     select {
       appearance: none;
-      background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%234A90E2' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%236b7280' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
       background-repeat: no-repeat;
-      background-position: right 12px center;
-      background-size: 16px;
+      background-position: right 16px center;
       padding-right: 40px;
     }
 
     select option:nth-child(even) {
-      background-color: rgba(126, 211, 33, 0.1);
+      background-color: rgba(80, 227, 194, 0.1);
     }
 
     select option:nth-child(odd) {
-      background-color: rgba(74, 144, 226, 0.1);
+      background-color: rgba(15, 98, 254, 0.05);
     }
 
     @media (max-width: 820px) {
@@ -204,32 +203,13 @@
         flex-direction: column;
       }
       
-      textarea {
-        min-width: 100%;
-      }
-      
-      .wrap {
-        padding: 10px;
-      }
-      
       .card {
         padding: 20px;
       }
-    }
-
-    /* Animações */
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(10px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-
-    .card {
-      animation: fadeIn 0.5s ease-out;
-    }
-
-    .button-group {
-      display: flex;
-      gap: 10px;
+      
+      h1 {
+        font-size: 20px;
+      }
     }
   </style>
 </head>
@@ -256,7 +236,7 @@
         </div>
         <div style="min-width:140px">
           <label>&nbsp;</label>
-          <div class="button-group">
+          <div style="display:flex;gap:12px">
             <button id="loadBtn">Carregar & Detectar</button>
             <button id="scanBtn">Re-detectar</button>
           </div>
@@ -283,7 +263,7 @@
       </div>
 
       <div class="row small" id="info">Informações: insira o ID da planilha e clique em Carregar & Detectar.</div>
-      <div id="error" class="error" style="display:none"></div>
+      <div id="error" class="error" style="display:none;margin-top:16px"></div>
 
       <div style="margin-top:20px">
         <table id="resultTable" style="display:none">
@@ -293,293 +273,269 @@
           <tbody></tbody>
         </table>
       </div>
+
     </div>
   </div>
 
-  <script>
-    // Mantive o JavaScript original, pois você pediu apenas para reescrever a estilização
-    /*  Versão: detecção automática simples
-        Estratégia:
-          - Carrega aba via gviz/tq
-          - Varre todas as células procurando por nomes de turmas (se o usuário forneceu lista, procura exatas) ou por padrões como "6º Ano A"/"1ªSÉRIE"/"9ºAno"
-          - Para cada ocorrência de turma encontrada, assume que imediatamente abaixo existe uma linha de cabeçalho com colunas (Nº, Aluno, ...). A partir daí, detecta pares M/F de disciplinas nas colunas seguintes.
-          - Detecta bimestres procurando linhas com "1º Bimestre|2º Bimestre|Bimestre" (regex).
-        Observação: este código faz uma detecção robusta na maioria das planilhas estruturadas; ajustes finos podem ser necessários dependendo do layout real.
-    */
+<script>
+/*  Versão: detecção automática simples
+    Estratégia:
+      - Carrega aba via gviz/tq
+      - Varre todas as células procurando por nomes de turmas (lista do usuário ou regex de padrão tipo "6º Ano A")
+      - Para cada turma encontrada, assume que abaixo existe linha de cabeçalho com Nº, Aluno, etc.
+      - Detecta bimestres procurando linhas com "1º Bimestre|2º Bimestre|..." (regex).
+*/
 
-    // ===== helpers =====
-    const sheetSelect = document.getElementById('sheetSelect');
-    const sheetIdInput = document.getElementById('sheetId');
-    const turmasInput = document.getElementById('turmasInput');
-    const loadBtn = document.getElementById('loadBtn');
-    const scanBtn = document.getElementById('scanBtn');
-    const turmaSelect = document.getElementById('turmaSelect');
-    const bimestreSelect = document.getElementById('bimestreSelect');
-    const alunoSelect = document.getElementById('alunoSelect');
-    const showBtn = document.getElementById('showBtn');
-    const info = document.getElementById('info');
-    const errorDiv = document.getElementById('error');
-    const resultTable = document.getElementById('resultTable');
-    const tbody = resultTable.querySelector('tbody');
+const sheetSelect = document.getElementById('sheetSelect');
+const sheetIdInput = document.getElementById('sheetId');
+const turmasInput = document.getElementById('turmasInput');
+const loadBtn = document.getElementById('loadBtn');
+const scanBtn = document.getElementById('scanBtn');
+const turmaSelect = document.getElementById('turmaSelect');
+const bimestreSelect = document.getElementById('bimestreSelect');
+const alunoSelect = document.getElementById('alunoSelect');
+const showBtn = document.getElementById('showBtn');
+const info = document.getElementById('info');
+const errorDiv = document.getElementById('error');
+const resultTable = document.getElementById('resultTable');
+const tbody = resultTable.querySelector('tbody');
 
-    let SHEET_ID = '';
-    let sheetHeaders = [];
-    let sheetRows = [];
-    let foundTurmas = []; // {name, row, colStart, colEnd, headerRowIdx, headerSlice}
-    let parsedStudentsByTurma = {}; // key: turmaId -> { bimestres: [{title, rowStart,rowEnd, students:[]}] }
+let SHEET_ID = '';
+let sheetHeaders = [];
+let sheetRows = [];
+let foundTurmas = [];
+let parsedStudentsByTurma = {};
 
-    function gvizUrl(sheetName){
-      return `https://docs.google.com/spreadsheets/d/${SHEET_ID}/gviz/tq?tqx=out:json&sheet=${encodeURIComponent(sheetName)}`;
+function gvizUrl(sheetName){
+  return `https://docs.google.com/spreadsheets/d/${SHEET_ID}/gviz/tq?tqx=out:json&sheet=${encodeURIComponent(sheetName)}`;
+}
+
+async function fetchSheet(sheetName){
+  info.textContent = 'Carregando aba...';
+  errorDiv.style.display='none';
+  const res = await fetch(gvizUrl(sheetName));
+  const txt = await res.text();
+  const jsonText = txt.replace(/^[^\(]*\(/, '').replace(/\);?$/, '');
+  const obj = JSON.parse(jsonText);
+  const table = obj.table;
+  sheetHeaders = table.cols.map(c => (c && c.label) ? c.label : '');
+  sheetRows = table.rows.map(r => {
+    const arr = [];
+    for (let i=0;i<table.cols.length;i++) arr.push((r.c && r.c[i]) ? r.c[i].v : "");
+    return arr;
+  });
+  info.textContent = `Aba carregada: ${sheetName} — ${sheetRows.length} linhas × ${sheetHeaders.length} colunas`;
+  return {headers: sheetHeaders, rows: sheetRows};
+}
+
+function normalizeText(s){ return (s||'').toString().normalize('NFD').replace(/\p{Diacritic}/gu,'').trim(); }
+
+function cellText(r,c){ return normalizeText((sheetRows[r]||[])[c]||'').toString(); }
+
+function findAllOccurrencesOfPatterns(patterns){
+  const hits = [];
+  for (let r=0;r<sheetRows.length;r++){
+    const row = sheetRows[r] || [];
+    for (let c=0;c<row.length;c++){
+      const v = normalizeText(row[c]||'');
+      if (!v) continue;
+      for (const p of patterns){
+        if (typeof p === 'string'){
+          if (v.toLowerCase() === p.toLowerCase()) hits.push({r,c,value:row[c]});
+        } else if (p instanceof RegExp){
+          if (p.test(v)) hits.push({r,c,value:row[c]});
+        }
+      }
+    }
+  }
+  return hits;
+}
+
+function detectTurmasAndBimestres(userTurmasList){
+  foundTurmas = [];
+  parsedStudentsByTurma = {};
+  const turmaPatterns = [];
+  if (userTurmasList && userTurmasList.length>0){
+    userTurmasList.forEach(t => turmaPatterns.push(t));
+  }
+  turmaPatterns.push(/^[0-9]{1,2}\s*º?\s*(ANO|ANO\b).*$/i);
+  turmaPatterns.push(/^[0-9]{1,2}\s*ª?\s*(S?SERIE).*$/i);
+  turmaPatterns.push(/^(?:[0-9]{1,2}º?\s*Ano\s*[A-Z]|[0-9]ºAno)/i);
+
+  const bimestreRegex = /\b(1|2|3|4)\s*(?:º|o)?\s*bimestre\b|\bbimestre\b/i;
+
+  let hits = [];
+  if (userTurmasList && userTurmasList.length>0){
+    hits = findAllOccurrencesOfPatterns(userTurmasList);
+  }
+  if (hits.length === 0){
+    hits = findAllOccurrencesOfPatterns(turmaPatterns);
+  }
+
+  for (const h of hits){
+    const r = h.r; const c = h.c; const raw = h.value;
+    let headerRowIndex = null;
+    for (let delta=1; delta<=3; delta++){
+      const maybe = sheetRows[r+delta] || [];
+      const rowText = maybe.map(x=>normalizeText(x||'')).join(' ').toLowerCase();
+      if (/\baluno\b/.test(rowText) && /\bno\b|\bnº\b|\bnumero\b|\bn\.o\b|\bnum\b|\bnumero\b/.test(rowText)){
+        headerRowIndex = r+delta; break;
+      }
+    }
+    if (headerRowIndex === null) headerRowIndex = r+1;
+
+    const headerRow = sheetRows[headerRowIndex] || [];
+    let colStart = c;
+    let alunoCol = headerRow.findIndex(x => /aluno/i.test((x||'').toString()));
+    let numeroCol = headerRow.findIndex(x => /n\b|numero|n\.|nº/i.test((x||'').toString()));
+    if (alunoCol !== -1) colStart = Math.max(0, alunoCol-1);
+    if (numeroCol !== -1) colStart = Math.min(colStart, numeroCol);
+
+    let colEnd = colStart;
+    for (let cc = colStart; cc < headerRow.length; cc++){
+      const val = (headerRow[cc]||'').toString();
+      if (val === '' && cc - colEnd > 10) break;
+      colEnd = cc;
     }
 
-    async function fetchSheet(sheetName){
-      info.textContent = 'Carregando aba...';
-      errorDiv.style.display='none';
-      const res = await fetch(gvizUrl(sheetName));
-      const txt = await res.text();
-      const jsonText = txt.replace(/^[^\(]*\(/, '').replace(/\);?$/, '');
-      const obj = JSON.parse(jsonText);
-      const table = obj.table;
-      sheetHeaders = table.cols.map(c => (c && c.label) ? c.label : '');
-      sheetRows = table.rows.map(r => {
-        const arr = [];
-        for (let i=0;i<table.cols.length;i++) arr.push((r.c && r.c[i]) ? r.c[i].v : "");
-        return arr;
+    const name = (typeof raw === 'string' && raw.toString().trim()) || `Turma @${r+1}:${c+1}`;
+    foundTurmas.push({ name, row: r, col:c, headerRowIndex, colStart, colEnd });
+  }
+
+  for (const t of foundTurmas){
+    const bimestres = [];
+    for (let rr = t.headerRowIndex+1; rr < sheetRows.length; rr++){
+      const txtLine = (sheetRows[rr]||[]).map(x=>normalizeText(x||'')).join(' ');
+      if (!txtLine) continue;
+      if (/(1\s*º\s*bimestre|2\s*º\s*bimestre|3\s*º\s*bimestre|4\s*º\s*bimestre|bimestre)/i.test(txtLine)){
+        bimestres.push({ title: (sheetRows[rr]||[])[0] || `Bimestre @${rr+1}`, rowIdx: rr });
+      }
+      if (/(\bano\b|\bserie\b)/i.test(txtLine) && rr > t.row + 1 && rr - t.row > 100) break;
+    }
+
+    if (bimestres.length === 0){
+      bimestres.push({ title: 'Bimestre único', rowIdx: t.headerRowIndex });
+    }
+
+    const ranges = [];
+    for (let i=0;i<bimestres.length;i++){
+      const start = bimestres[i].rowIdx + 1;
+      const end = (i+1 < bimestres.length) ? bimestres[i+1].rowIdx - 1 : Math.min(start + 120, sheetRows.length-1);
+      ranges.push({ title: bimestres[i].title, rowStart: start, rowEnd: end });
+    }
+
+    const parsed = { bimestres: [] };
+    for (const rng of ranges){
+      const block = [];
+      for (let rr = rng.rowStart; rr <= rng.rowEnd; rr++){
+        const slice = (sheetRows[rr] || []).slice(t.colStart, Math.min(t.colEnd+1, sheetHeaders.length));
+        const a0 = (slice[0]||'').toString().trim();
+        const a1 = (slice[1]||'').toString().trim();
+        if (!a0 && !a1) continue;
+        block.push({row:rr, values: slice});
+      }
+
+      const students = block.map(bt => {
+        const vals = bt.values;
+        const aluno = vals[0] || '';
+        const numero = vals[1] || '';
+        const disciplinas = {};
+        for (let cc = 2; cc < vals.length; cc += 2){
+          const headerCell = (sheetRows[t.headerRowIndex] || [])[t.colStart + cc] || '';
+          let base = (headerCell || '').toString().replace(/\bM\b|\bF\b|\(M\)|\(F\)/ig,'').trim();
+          if (!base) base = `Disc ${Math.floor((cc-2)/2)+1}`;
+          const nota = vals[cc] || '';
+          const faltas = (cc+1 < vals.length) ? vals[cc+1] || '' : '';
+          disciplinas[base] = { Nota: nota, Faltas: faltas };
+        }
+        return { Numero: numero, Aluno: aluno, Disciplinas: disciplinas };
       });
-      info.textContent = `Aba carregada: ${sheetName} — ${sheetRows.length} linhas × ${sheetHeaders.length} colunas`;
-      return {headers: sheetHeaders, rows: sheetRows};
+
+      parsed.bimestres.push({ title: rng.title, rowStart: rng.rowStart, rowEnd: rng.rowEnd, students });
     }
 
-    function normalizeText(s){ return (s||'').toString().normalize('NFD').replace(/\p{Diacritic}/gu,'').trim(); }
+    parsedStudentsByTurma[t.name] = parsed;
+  }
 
-    function cellText(r,c){ return normalizeText((sheetRows[r]||[])[c]||'').toString(); }
+  return {foundTurmas, parsedStudentsByTurma};
+}
 
-    function findAllOccurrencesOfPatterns(patterns){
-      const hits = [];
-      for (let r=0;r<sheetRows.length;r++){
-        const row = sheetRows[r] || [];
-        for (let c=0;c<row.length;c++){
-          const v = normalizeText(row[c]||'');
-          if (!v) continue;
-          for (const p of patterns){
-            if (typeof p === 'string'){
-              if (v.toLowerCase() === p.toLowerCase()) hits.push({r,c,value:row[c]});
-            } else if (p instanceof RegExp){
-              if (p.test(v)) hits.push({r,c,value:row[c]});
-            }
-          }
-        }
-      }
-      return hits;
-    }
+function fillTurmaSelect(){
+  turmaSelect.innerHTML = '';
+  const keys = Object.keys(parsedStudentsByTurma);
+  if (keys.length === 0){ turmaSelect.innerHTML = '<option>— nenhuma turma detectada —</option>'; return; }
+  keys.forEach(k => { const o = document.createElement('option'); o.value = k; o.textContent = k; turmaSelect.appendChild(o); });
+}
 
-    function detectTurmasAndBimestres(userTurmasList){
-      foundTurmas = [];
-      parsedStudentsByTurma = {};
-      const turmaPatterns = [];
-      if (userTurmasList && userTurmasList.length>0){
-        userTurmasList.forEach(t => turmaPatterns.push(t));
-      }
-      // generics: ex: '6ºANO', '6º Ano A', '1ªSERIE', '9ºAno A'
-      turmaPatterns.push(/^[0-9]{1,2}\s*º?\s*(ANO|ANO\b).*$/i);
-      turmaPatterns.push(/^[0-9]{1,2}\s*ª?\s*(S?SERIE).*$/i);
-      turmaPatterns.push(/^(?:[0-9]{1,2}º?\s*Ano\s*[A-Z]|[0-9]ºAno)/i);
+function fillBimestresForTurma(turmaName){
+  bimestreSelect.innerHTML = '';
+  const parsed = parsedStudentsByTurma[turmaName];
+  if (!parsed) { bimestreSelect.innerHTML = '<option>— sem dados —</option>'; return; }
+  parsed.bimestres.forEach((b,i) => { const o = document.createElement('option'); o.value = i; o.textContent = `${b.title} (${b.rowStart+1}-${b.rowEnd+1})`; bimestreSelect.appendChild(o); });
+}
 
-      const bimestreRegex = /\b(1|2|3|4)\s*(?:º|o)?\s*bimestre\b|\bbimestre\b/i;
+function fillAlunoSelect(turmaName, bIndex){
+  alunoSelect.innerHTML = '';
+  const parsed = parsedStudentsByTurma[turmaName];
+  if (!parsed) return;
+  const students = parsed.bimestres[bIndex].students;
+  students.forEach(s => { const o = document.createElement('option'); o.value = s.Numero || s.Aluno; o.textContent = `${s.Numero || '-'} - ${s.Aluno || '-'}`; alunoSelect.appendChild(o); });
+}
 
-      // find turma hits (prefer exact user matches first)
-      let hits = [];
-      if (userTurmasList && userTurmasList.length>0){
-        hits = findAllOccurrencesOfPatterns(userTurmasList);
-      }
-      if (hits.length === 0){
-        // fallback to regex search
-        hits = findAllOccurrencesOfPatterns(turmaPatterns);
-      }
+function showAluno(turmaName, bIndex, studentValue){
+  tbody.innerHTML = '';
+  resultTable.style.display='none';
+  const parsed = parsedStudentsByTurma[turmaName];
+  if (!parsed) return;
+  const students = parsed.bimestres[bIndex].students;
+  const aluno = students.find(s => (s.Numero==studentValue) || (s.Aluno==studentValue));
+  if (!aluno) { info.textContent = 'Aluno não encontrado'; return; }
+  Object.entries(aluno.Disciplinas).forEach(([disc, v]) => {
+    const tr = document.createElement('tr');
+    tr.innerHTML = `<td>${aluno.Numero||''}</td><td>${aluno.Aluno||''}</td><td>${disc}</td><td>${v.Nota||''}</td><td>${v.Faltas||''}</td>`;
+    tbody.appendChild(tr);
+  });
+  resultTable.style.display='table';
+  info.textContent = `Exibindo ${aluno.Numero||''} - ${aluno.Aluno||''}`;
+}
 
-      // for each hit, try to detect the header row below (Nº, Aluno ...)
-      for (const h of hits){
-        const r = h.r; const c = h.c; const raw = h.value;
-        // assume header is in next 1..3 rows below
-        let headerRowIndex = null;
-        for (let delta=1; delta<=3; delta++){
-          const maybe = sheetRows[r+delta] || [];
-          const rowText = maybe.map(x=>normalizeText(x||'')).join(' ').toLowerCase();
-          if (/\baluno\b/.test(rowText) && /\bno\b|\bnº\b|\bnumero\b|\bn\.o\b|\bnum\b|\bnumero\b/.test(rowText)){
-            headerRowIndex = r+delta; break;
-          }
-        }
-        if (headerRowIndex === null) headerRowIndex = r+1; // fallback
+loadBtn.addEventListener('click', async () => {
+  SHEET_ID = sheetIdInput.value.trim();
+  const sheetName = sheetSelect.value || '6ºANO';
+  if (!SHEET_ID) { errorDiv.style.display='block'; errorDiv.textContent='Cole o ID da planilha antes de carregar.'; return; }
+  try{
+    await fetchSheet(sheetName);
+    const raw = turmasInput.value || '';
+    const userTurmas = raw.split(/[\r\n\t]+/).map(x=>x.trim()).filter(Boolean);
+    detectTurmasAndBimestres(userTurmas);
+    fillTurmaSelect();
+    info.textContent = 'Detecção concluída. Selecione a turma e bimestre.';
+  } catch(err){ console.error(err); errorDiv.style.display='block'; errorDiv.textContent='Falha ao carregar a planilha. Verifique permissões.'; }
+});
 
-        // compute column range: try to find where the header has content
-        const headerRow = sheetRows[headerRowIndex] || [];
-        let colStart = c; // try to backtrack to find 'Nº' or 'Aluno'
-        // search in the neighborhood for column that contains 'Aluno'
-        let alunoCol = headerRow.findIndex(x => /aluno/i.test((x||'').toString()));
-        let numeroCol = headerRow.findIndex(x => /n\b|numero|n\.|nº/i.test((x||'').toString()));
-        if (alunoCol !== -1) colStart = Math.max(0, alunoCol-1);
-        if (numeroCol !== -1) colStart = Math.min(colStart, numeroCol);
+scanBtn.addEventListener('click', () => {
+  const raw = turmasInput.value || '';
+  const userTurmas = raw.split(/[\r\n\t]+/).map(x=>x.trim()).filter(Boolean);
+  detectTurmasAndBimestres(userTurmas);
+  fillTurmaSelect();
+  info.textContent = 'Re-detecção concluída.';
+});
 
-        // end column: scan to right until many empty cols
-        let colEnd = colStart;
-        for (let cc = colStart; cc < headerRow.length; cc++){
-          const val = (headerRow[cc]||'').toString();
-          if (val === '' && cc - colEnd > 10) break; // stop after long gap
-          colEnd = cc;
-        }
+turmaSelect.addEventListener('change', () => {
+  fillBimestresForTurma(turmaSelect.value);
+  fillAlunoSelect(turmaSelect.value, 0);
+});
 
-        const name = (typeof raw === 'string' && raw.toString().trim()) || `Turma @${r+1}:${c+1}`;
-        foundTurmas.push({ name, row: r, col:c, headerRowIndex, colStart, colEnd });
-      }
+bimestreSelect.addEventListener('change', () => {
+  fillAlunoSelect(turmaSelect.value, parseInt(bimestreSelect.value));
+});
 
-      // Now, for each detected turma, slice further to find bimestres inside its vertical range
-      for (const t of foundTurmas){
-        // search downwards from t.headerRowIndex for bimestre titles
-        const bimestres = [];
-        for (let rr = t.headerRowIndex+1; rr < sheetRows.length; rr++){
-          const txtLine = (sheetRows[rr]||[]).map(x=>normalizeText(x||'')).join(' ');
-          if (!txtLine) continue;
-          if (/(1\s*º\s*bimestre|2\s*º\s*bimestre|3\s*º\s*bimestre|4\s*º\s*bimestre|bimestre)/i.test(txtLine)){
-            bimestres.push({ title: (sheetRows[rr]||[])[0] || `Bimestre @${rr+1}`, rowIdx: rr });
-          }
-          // heurística de parada: se encontrarmos outra turma name nearby -> stop
-          if (/(\bano\b|\bserie\b)/i.test(txtLine) && rr > t.row + 1 && rr - t.row > 100) break;
-        }
+showBtn.addEventListener('click', () => {
+  showAluno(turmaSelect.value, parseInt(bimestreSelect.value), alunoSelect.value);
+});
 
-        // if none found, create a single bimestre spanning next ~40 lines
-        if (bimestres.length === 0){
-          bimestres.push({ title: 'Bimestre único', rowIdx: t.headerRowIndex });
-        }
-
-        // convert bimestres into ranges of rows: from each rowIdx+1 to next-1
-        const ranges = [];
-        for (let i=0;i<bimestres.length;i++){
-          const start = bimestres[i].rowIdx + 1;
-          const end = (i+1 < bimestres.length) ? bimestres[i+1].rowIdx - 1 : Math.min(start + 120, sheetRows.length-1);
-          ranges.push({ title: bimestres[i].title, rowStart: start, rowEnd: end });
-        }
-
-        // parse students in each range
-        const parsed = { bimestres: [] };
-        for (const rng of ranges){
-          const block = [];
-          for (let rr = rng.rowStart; rr <= rng.rowEnd; rr++){
-            const slice = (sheetRows[rr] || []).slice(t.colStart, Math.min(t.colEnd+1, sheetHeaders.length));
-            // consider row if first two cols not empty
-            const a0 = (slice[0]||'').toString().trim();
-            const a1 = (slice[1]||'').toString().trim();
-            if (!a0 && !a1) continue;
-            block.push({row:rr, values: slice});
-          }
-
-          const students = block.map(bt => {
-            const vals = bt.values;
-            const aluno = vals[0] || '';
-            const numero = vals[1] || '';
-            const disciplinas = {};
-            for (let cc = 2; cc < vals.length; cc += 2){
-              const headerCell = (sheetRows[t.headerRowIndex] || [])[t.colStart + cc] || '';
-              let base = (headerCell || '').toString().replace(/\bM\b|\bF\b|\(M\)|\(F\)/ig,'').trim();
-              if (!base) base = `Disc ${Math.floor((cc-2)/2)+1}`;
-              const nota = vals[cc] || '';
-              const faltas = (cc+1 < vals.length) ? vals[cc+1] || '' : '';
-              disciplinas[base] = { Nota: nota, Faltas: faltas };
-            }
-            return { Numero: numero, Aluno: aluno, Disciplinas: disciplinas };
-          });
-
-          parsed.bimestres.push({ title: rng.title, rowStart: rng.rowStart, rowEnd: rng.rowEnd, students });
-        }
-
-        parsedStudentsByTurma[t.name] = parsed;
-      }
-
-      return {foundTurmas, parsedStudentsByTurma};
-    }
-
-    function fillTurmaSelect(){
-      turmaSelect.innerHTML = '';
-      const keys = Object.keys(parsedStudentsByTurma);
-      if (keys.length === 0){ turmaSelect.innerHTML = '<option>— nenhuma turma detectada —</option>'; return; }
-      keys.forEach(k => { const o = document.createElement('option'); o.value = k; o.textContent = k; turmaSelect.appendChild(o); });
-    }
-
-    function fillBimestresForTurma(turmaName){
-      bimestreSelect.innerHTML = '';
-      const parsed = parsedStudentsByTurma[turmaName];
-      if (!parsed) { bimestreSelect.innerHTML = '<option>— sem dados —</option>'; return; }
-      parsed.bimestres.forEach((b,i) => { const o = document.createElement('option'); o.value = i; o.textContent = `${b.title} (${b.rowStart+1}-${b.rowEnd+1})`; bimestreSelect.appendChild(o); });
-    }
-
-    function fillAlunoSelect(turmaName, bIndex){
-      alunoSelect.innerHTML = '';
-      const parsed = parsedStudentsByTurma[turmaName];
-      if (!parsed) return;
-      const students = parsed.bimestres[bIndex].students;
-      students.forEach(s => { const o = document.createElement('option'); o.value = s.Numero || s.Aluno; o.textContent = `${s.Numero || '-'} - ${s.Aluno || '-'}`; alunoSelect.appendChild(o); });
-    }
-
-    function showAluno(turmaName, bIndex, studentValue){
-      tbody.innerHTML = '';
-      resultTable.style.display='none';
-      const parsed = parsedStudentsByTurma[turmaName];
-      if (!parsed) return;
-      const students = parsed.bimestres[bIndex].students;
-      const aluno = students.find(s => (s.Numero==studentValue) || (s.Aluno==studentValue));
-      if (!aluno) { info.textContent = 'Aluno não encontrado'; return; }
-      Object.entries(aluno.Disciplinas).forEach(([disc, v]) => {
-        const tr = document.createElement('tr');
-        tr.innerHTML = `<td>${aluno.Numero||''}</td><td>${aluno.Aluno||''}</td><td>${disc}</td><td>${v.Nota||''}</td><td>${v.Faltas||''}</td>`;
-        tbody.appendChild(tr);
-      });
-      resultTable.style.display='table';
-      info.textContent = `Exibindo ${aluno.Numero||''} - ${aluno.Aluno||''}`;
-    }
-
-    // events
-    loadBtn.addEventListener('click', async () => {
-      SHEET_ID = sheetIdInput.value.trim();
-      const sheetName = sheetSelect.value || '6ºANO';
-      if (!SHEET_ID) { errorDiv.style.display='block'; errorDiv.textContent='Cole o ID da planilha antes de carregar.'; return; }
-      try{
-        await fetchSheet(sheetName);
-        const raw = turmasInput.value || '';
-        const userTurmas = raw.split(/[\r\n\t]+/).map(x=>x.trim()).filter(Boolean);
-        detectTurmasAndBimestres(userTurmas);
-        fillTurmaSelect();
-        info.textContent = 'Detecção concluída. Selecione a turma e bimestre.';
-      } catch(err){ console.error(err); errorDiv.style.display='block'; errorDiv.textContent='Falha ao carregar a planilha. Verifique permissões.'; }
-    });
-
-    scanBtn.addEventListener('click', () => {
-      const raw = turmasInput.value || '';
-      const userTurmas = raw.split(/[\r\n\t]+/).map(x=>x.trim()).filter(Boolean);
-      detectTurmasAndBimestres(userTurmas);
-      fillTurmaSelect();
-      info.textContent = 'Re-deteção feita.';
-    });
-
-    sheetSelect.addEventListener('change', () => {});
-
-    turmaSelect.addEventListener('change', () => {
-      const t = turmaSelect.value; if (!t) return; fillBimestresForTurma(t);
-    });
-
-    bimestreSelect.addEventListener('change', () => {
-      const t = turmaSelect.value; const bi = parseInt(bimestreSelect.value,10); if (!t || isNaN(bi)) return; fillAlunoSelect(t,bi);
-    });
-
-    showBtn.addEventListener('click', () => {
-      const t = turmaSelect.value; const bi = parseInt(bimestreSelect.value,10); const al = alunoSelect.value;
-      if (!t || isNaN(bi) || !al) { errorDiv.style.display='block'; errorDiv.textContent='Selecione turma, bimestre e aluno.'; return; }
-      errorDiv.style.display='none';
-      showAluno(t,bi,al);
-    });
-
-    // Fill a few common sheet names for convenience
-    (function init(){
-      ['6ºANO','7ºANO','8ºANO','9ºANO','1ªSERIE','2ªSERIE','3ªSERIE'].forEach(s => { const o = document.createElement('option'); o.value=s; o.textContent=s; sheetSelect.appendChild(o); });
-    })();
-  </script>
+// Inicialização
+sheetSelect.innerHTML = '<option value="6ºANO">6ºANO</option><option value="7ºANO">7ºANO</option><option value="8ºANO">8ºANO</option><option value="9ºANO">9ºANO</option>';
+</script>
 </body>
 </html>
